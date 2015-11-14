@@ -1,0 +1,49 @@
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 #s-Ellipse_1 {
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: #404040;
+  border-right-width: 2px;
+  border-right-style: solid;
+  border-right-color: #404040;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: #404040;
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-left-color: #404040;
+  -ms-transform: rotate(0.0deg);
+}
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 #s-Text_1 {
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=99);
+  filter: alpha(opacity=99);
+  -ms-transform: rotate(0.0deg);
+}
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 #s-Text_2 {
+  -ms-transform: rotate(0.0deg);
+}
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 #s-Text_3 {
+  -ms-transform: rotate(0.0deg);
+}
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 #s-Text_4 {
+  -ms-transform: rotate(0.0deg);
+}
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 #s-Text_5 {
+  -ms-transform: rotate(0.0deg);
+}
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 #s-Text_6 {
+  -ms-transform: rotate(0.0deg);
+}
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 #s-Text_7 {
+  -ms-transform: rotate(0.0deg);
+}
+#jim-container .ui-page {
+  overflow-x: hidden;
+}
+.non_jim_mobile #simulation {
+  overflow-x: hidden;
+}
+#s-d16e46a7-fdd4-4f62-858f-b0dedcfbaeb4 > #loadMark {
+  width: 1px;
+  visibility: hidden;
+  display: none;
+}
