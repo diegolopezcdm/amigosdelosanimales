@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+  ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+  <locations  
+    class = "java.util.ArrayList">
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.diego.amigosdelosanimales.WelcomeActivity"/>
+      <point      
+        x = "1240"      
+        y = "1736"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.diego.amigosdelosanimales.MainActivity"/>
+      <point      
+        x = "284"      
+        y = "244"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.example.diego.amigosdelosanimales.LoginActivity"/>
+      <point      
+        x = "1576"      
+        y = "204"/>
+    </statePointEntry>
+  </locations>
+</navigationModel>
