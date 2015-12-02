@@ -1,0 +1,138 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="pe.adoptapet.adoptapet.view.MainActivity"
+    android:background="@drawable/transparent">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_white_rounded"
+        android:padding="10dp"
+        android:id="@+id/relativeLayout">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select a pet:"
+            android:id="@+id/lblSelectPet"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinPet"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/lblSelectPet"
+            android:layout_toEndOf="@+id/lblSelectPet"
+            android:entries="@array/pet_arrays"
+            android:prompt="@string/select_prompt"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age:"
+            android:id="@+id/lblAgePet"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:layout_below="@+id/spinPet"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinAgePet"
+            android:entries="@array/age_arrays"
+            android:prompt="@string/select_prompt"
+            android:layout_below="@+id/spinPet"
+            android:layout_alignLeft="@+id/spinPet"
+            android:layout_alignStart="@+id/spinPet"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size:"
+            android:id="@+id/lblSizePet"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:layout_below="@+id/spinAgePet"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinSizePet"
+            android:entries="@array/size_arrays"
+            android:prompt="@string/select_prompt"
+            android:spinnerMode="dropdown"
+            android:layout_alignTop="@+id/lblSizePet"
+            android:layout_alignLeft="@+id/spinAgePet"
+            android:layout_alignStart="@+id/spinAgePet" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sex:"
+            android:id="@+id/lblSexPet"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:layout_below="@+id/spinSizePet"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinSexPet"
+            android:entries="@array/sex_arrays"
+            android:prompt="@string/select_prompt"
+            android:spinnerMode="dropdown"
+            android:layout_below="@+id/spinSizePet"
+            android:layout_alignLeft="@+id/spinSizePet"
+            android:layout_alignStart="@+id/spinSizePet" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:id="@+id/btnSearchPet"
+            android:layout_below="@+id/spinSexPet"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="29dp"
+            style="@style/HomeButtonStyle"
+            android:onClick="goToAdoptResult"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgAdoptLogo"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/home_logo"
+        android:layout_marginBottom="10dp"/>
+</RelativeLayout>

@@ -1,0 +1,153 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="pe.adoptapet.adoptapet.view.MainActivity"
+    android:background="@drawable/bg_white_rounded"
+    android:layout_margin="20dp">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollHome"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:fillViewport="false"
+        android:layout_above="@+id/btnSaveNewAccountPet">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/newaccount_img_pick"
+                    android:src="@drawable/camera_icon"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="selectAccountPhoto"
+                    android:scaleType="centerCrop" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Firstname"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/txtNewAccountPetName"
+                    android:layout_below="@+id/newaccount_img_pick"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountPetDescription"
+                    android:layout_below="@+id/txtNewAccountPetName"
+                    android:layout_alignLeft="@+id/txtNewAccountPetName"
+                    android:layout_alignStart="@+id/txtNewAccountPetName"
+                    android:hint="Lastname"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountAddress"
+                    android:layout_below="@+id/txtNewAccountPetDescription"
+                    android:layout_alignLeft="@+id/txtNewAccountPetDescription"
+                    android:layout_alignStart="@+id/txtNewAccountPetDescription"
+                    android:hint="Address"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountEmail"
+                    android:layout_below="@+id/txtNewAccountAddress"
+                    android:layout_alignLeft="@+id/txtNewAccountAddress"
+                    android:layout_alignStart="@+id/txtNewAccountAddress"
+                    android:hint="E-mail"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountPhone"
+                    android:layout_below="@+id/txtNewAccountEmail"
+                    android:layout_alignLeft="@+id/txtNewAccountEmail"
+                    android:layout_alignStart="@+id/txtNewAccountEmail"
+                    android:hint="Phone number"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="datetime"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountBirthday"
+                    android:layout_below="@+id/txtNewAccountPhone"
+                    android:layout_alignLeft="@+id/txtNewAccountPhone"
+                    android:layout_alignStart="@+id/txtNewAccountPhone"
+                    android:hint="Birthday"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text=""/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountPassword"
+                    android:layout_below="@+id/txtNewAccountBirthday"
+                    android:layout_alignLeft="@+id/txtNewAccountBirthday"
+                    android:layout_alignStart="@+id/txtNewAccountBirthday"
+                    android:hint="Password"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text=""/>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create"
+        android:id="@+id/btnSaveNewAccountPet"
+        style="@style/HomeButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

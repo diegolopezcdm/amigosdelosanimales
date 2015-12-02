@@ -1,0 +1,16 @@
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--<item name="android:windowBackground">@drawable/fondo_app</item>-->
+        <item name="homeAsUpIndicator">@drawable/ic_drawer</item>
+        <item name="android:homeAsUpIndicator" tools:ignore="NewApi">@drawable/ic_drawer</item>
+    </style>
+
+    <style name="HomeButtonStyle" parent="Base.TextAppearance.AppCompat.Button">
+        <item name="android:background">@drawable/bg_btnhomebutton</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+</resources>

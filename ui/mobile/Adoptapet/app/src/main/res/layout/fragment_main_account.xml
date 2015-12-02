@@ -1,0 +1,158 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="pe.adoptapet.adoptapet.view.MainActivity"
+    android:background="@drawable/bg_white_rounded"
+    android:layout_margin="20dp">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollHome"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:fillViewport="false"
+        android:layout_above="@+id/btnSaveAccountPet">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/account_img_pick"
+                    android:src="@drawable/llvalencia"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="pickPhotoGallery"
+                    android:scaleType="centerCrop" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Firstname"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/txtAccountFirstName"
+                    android:layout_below="@+id/account_img_pick"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="Luis"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtAccountLastname"
+                    android:layout_below="@+id/txtAccountFirstName"
+                    android:layout_alignLeft="@+id/txtAccountFirstName"
+                    android:layout_alignStart="@+id/txtAccountFirstName"
+                    android:hint="Lastname"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="Valencia"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtAccountAddress"
+                    android:layout_below="@+id/txtAccountLastname"
+                    android:layout_alignLeft="@+id/txtAccountLastname"
+                    android:layout_alignStart="@+id/txtAccountLastname"
+                    android:hint="Address"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="Av. 22 de ...."/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtAccountEmail"
+                    android:layout_below="@+id/txtAccountAddress"
+                    android:layout_alignLeft="@+id/txtAccountAddress"
+                    android:layout_alignStart="@+id/txtAccountAddress"
+                    android:hint="E-mail"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="lvalencia@gmail.com"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtAccountPhone"
+                    android:layout_below="@+id/txtAccountEmail"
+                    android:layout_alignLeft="@+id/txtAccountEmail"
+                    android:layout_alignStart="@+id/txtAccountEmail"
+                    android:hint="Phone number"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="999999999"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="datetime"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtAccountBirthday"
+                    android:layout_below="@+id/txtAccountPhone"
+                    android:layout_alignLeft="@+id/txtAccountPhone"
+                    android:layout_alignStart="@+id/txtAccountPhone"
+                    android:hint="Birthday"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text=""/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtAccountPassword"
+                    android:layout_below="@+id/txtAccountBirthday"
+                    android:layout_alignLeft="@+id/txtAccountBirthday"
+                    android:layout_alignStart="@+id/txtAccountBirthday"
+                    android:hint="New password"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text=""/>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:id="@+id/btnSaveAccountPet"
+        style="@style/HomeButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

@@ -1,0 +1,104 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="pe.adoptapet.adoptapet.view.MainActivity"
+    android:background="@drawable/transparent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_rounded"
+    android:padding="16dp"
+    android:layout_centerVertical="true">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/img_pet_petphoto"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/dog_profile" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="PetName"
+            android:textSize="20sp"
+            android:id="@+id/pet_petname"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/img_pet_petphoto"
+            android:layout_toStartOf="@+id/img_pet_petphoto"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Description"
+            android:id="@+id/pet_petdescription"
+            android:layout_below="@+id/pet_petname"
+            android:layout_toLeftOf="@+id/img_pet_petphoto"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Owner"
+            android:id="@+id/pet_owner"
+            android:layout_below="@+id/img_pet_petphoto"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/img_pet_petphoto"
+            android:layout_alignEnd="@+id/img_pet_petphoto"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size"
+            android:id="@+id/pet_petsize"
+            android:layout_below="@+id/pet_owner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Race"
+            android:id="@+id/pet_petrace"
+            android:textSize="18sp"
+            android:layout_below="@+id/pet_petsize"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:id="@+id/pet_petage"
+            android:textSize="18sp"
+            android:layout_below="@+id/pet_petrace"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adopt"
+            android:id="@+id/btnAdoptPet"
+            android:layout_below="@+id/pet_petage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            style="@style/HomeButtonStyle"
+            android:onClick="adoptPet"/>
+    </RelativeLayout>
+</RelativeLayout>
