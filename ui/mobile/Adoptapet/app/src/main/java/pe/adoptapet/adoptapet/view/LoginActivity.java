@@ -163,7 +163,7 @@ public class LoginActivity extends ActionBarActivity {
 
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, Constants.RESULT_LOAD_IMAGE);
-        
+
     }
 
     @Override

@@ -6,19 +6,33 @@ import java.io.File;
  * Created by AndrewSteven on 30/11/2015.
  */
 public class Pet {
+
     private String objectId;
     private String petName;
+
     private String ownerName;
+
     private String petType;
+
     private String ownerId;
+
     private String petSize;
+
     private String petRace;
+
     private String petAge;
+
     private File petPhoto;
+
     private int photoRes;
+
     private String petDescription;
 
+
+
     public Pet(){
+
+
 
     }
 
@@ -26,21 +40,35 @@ public class Pet {
 
     public Pet(String objectId, String petName, String petType, String ownerName, String ownerId, String petSize, String petRace, String petAge, File petPhoto, int photoRes, String petDescription) {
         this.objectId = objectId;
+
         this.petName = petName;
+
         this.petType = petType;
+
         this.ownerName = ownerName;
+
         this.ownerId = ownerId;
+
         this.petSize = petSize;
+
         this.petRace = petRace;
+
         this.petAge = petAge;
+
         this.petPhoto = petPhoto;
+
         this.photoRes = photoRes;
+
         this.petDescription = petDescription;
     }
 
     public String getObjectId() {
         return objectId;
     }
+
+
+
+
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
@@ -50,6 +78,9 @@ public class Pet {
         return petName;
     }
 
+
+
+    
     public void setPetName(String petName) {
         this.petName = petName;
     }
