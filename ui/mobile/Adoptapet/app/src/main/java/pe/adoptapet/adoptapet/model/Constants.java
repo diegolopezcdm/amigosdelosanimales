@@ -118,7 +118,7 @@ public class Constants {
         }catch(Exception ex){
 
             Toast.makeText(ctx, "Photo can not be loaded", Toast.LENGTH_SHORT).show();
-            
+
         }
     }
 

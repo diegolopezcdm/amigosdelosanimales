@@ -7,18 +7,28 @@ import java.io.File;
  */
 public class Campaign {
     private String objectId;
+
     private String campaignName;
+
     private String campaignShortDesc;
+
     private String campaignLink;
+
     private int campaignRes;
+
     private File campaignPhoto;
 
     public Campaign(String objectId, String campaignName, String campaignShortDesc, String campaignLink, int campaignRes, File campaignPhoto) {
         this.objectId = objectId;
+
         this.campaignName = campaignName;
+
         this.campaignShortDesc = campaignShortDesc;
+
         this.campaignLink = campaignLink;
+
         this.campaignRes = campaignRes;
+
         this.campaignPhoto = campaignPhoto;
     }
 
