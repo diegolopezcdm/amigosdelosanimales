@@ -200,6 +200,8 @@ public class MainActivity extends ActionBarActivity
 
     private  static ImageView imgPickPhoto;
     public void pickPhotoGallery(View v){
+
+        
         imgPickPhoto = (ImageView)v;
         Intent i = new Intent(
                 Intent.ACTION_PICK,
