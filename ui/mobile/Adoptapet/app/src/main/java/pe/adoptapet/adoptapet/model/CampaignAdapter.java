@@ -32,9 +32,7 @@ public class CampaignAdapter extends ArrayAdapter<String> {
     public View getView(int position,View view,ViewGroup parent) {
 
         LayoutInflater inflater=context.getLayoutInflater();
-
         View rowView=inflater.inflate(R.layout.campaign_item, null,true);
-
         if(position%2==0){
             rowView.setBackgroundResource(R.drawable.bg_trans_orange);
         }else{
@@ -42,15 +40,10 @@ public class CampaignAdapter extends ArrayAdapter<String> {
         }
 
         TextView txtTitle = (TextView) rowView.findViewById(R.id.campaign_item_text);
-
         TextView txtDesc = (TextView) rowView.findViewById(R.id.campaign_item_desc);
-
         ImageView imageView = (ImageView) rowView.findViewById(R.id.campaign_item_icon);
-
         txtTitle.setText(lstCampaign[position].getCampaignName());
-
         txtDesc.setText(lstCampaign[position].getCampaignShortDesc());
-        
         imageView.setImageResource(lstCampaign[position].getCampaignRes());
 
         return rowView;
