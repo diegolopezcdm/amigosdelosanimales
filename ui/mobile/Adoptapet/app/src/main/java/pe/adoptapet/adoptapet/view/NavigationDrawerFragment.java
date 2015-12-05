@@ -75,10 +75,8 @@ public class NavigationDrawerFragment extends Fragment {
         mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
 
         if (savedInstanceState != null) {
-
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             mFromSavedInstanceState = true;
-
         }
 
         // Select either the default item (0) or the last selected item.
@@ -95,7 +93,6 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,7 +101,6 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-
         /*mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_1,
@@ -116,14 +112,13 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_campaign),
                         getString(R.string.title_account),
                 }));*/
-
-        NavDrawerItem []drawer_items = new NavDrawerItem[5];
+        NavDrawerItem []drawer_items = new NavDrawerItem[6];
         drawer_items[0] = new NavDrawerItem(R.drawable.home_logo, getString(R.string.title_home));
         drawer_items[1] = new NavDrawerItem(R.drawable.adopt_icon, getString(R.string.title_adopt));
         drawer_items[2] = new NavDrawerItem(R.drawable.give_icon, getString(R.string.title_give));
         drawer_items[3] = new NavDrawerItem(R.drawable.camp_icon, getString(R.string.title_campaign));
         drawer_items[4] = new NavDrawerItem(R.drawable.account_icon, getString(R.string.title_account));
-
+        drawer_items[5] = new NavDrawerItem(R.drawable.logout_icon, "Logout");
 
         NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity(), R.layout.drawer_list_item, drawer_items);
 

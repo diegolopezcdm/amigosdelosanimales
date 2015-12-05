@@ -7,20 +7,13 @@ import java.io.File;
  */
 public class User {
     private String objectId;
-
     private String username;
-
     private String password;
-
-    private String name;
+    private String firstname;
     private String lastname;
-
     private String dni;
-
     private String phono;
-
     private String email;
-
     private File photo;
 
     public String getObjectId() {
@@ -47,12 +40,12 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastname() {

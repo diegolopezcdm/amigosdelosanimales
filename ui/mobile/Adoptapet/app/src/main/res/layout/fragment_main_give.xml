@@ -65,16 +65,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Select a pet:"
+                    android:text="Pet type:"
                     android:id="@+id/textView"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:textSize="16sp"
+                    android:layout_marginRight="10dp"
                     android:layout_below="@+id/txtGivePetDescription"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_alignBottom="@+id/spin_give_pettype"
+                    android:padding ="10dp" />
 
                 <Spinner
                     android:layout_width="wrap_content"
@@ -101,13 +104,14 @@
                     android:textSize="16sp"
                     android:layout_below="@+id/spin_give_pettype"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_above="@+id/textView3"
+                    android:padding ="10dp" />
 
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/spin_give_petage"
-                    android:entries="@array/age_arrays"
                     android:prompt="@string/select_prompt"
                     android:spinnerMode="dropdown"
                     android:layout_below="@+id/spin_give_pettype"
@@ -128,13 +132,14 @@
                     android:textSize="16sp"
                     android:layout_below="@+id/spin_give_petage"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_alignBottom="@+id/sping_give_petsize"
+                    android:padding ="10dp" />
 
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/sping_give_petsize"
-                    android:entries="@array/size_arrays"
                     android:prompt="@string/select_prompt"
                     android:spinnerMode="dropdown"
                     android:layout_below="@+id/spin_give_petage"
@@ -155,13 +160,14 @@
                     android:textSize="16sp"
                     android:layout_below="@+id/sping_give_petsize"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_above="@+id/txtGivePetRace"
+                    android:padding ="10dp" />
 
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/spin_give_petsex"
-                    android:entries="@array/sex_arrays"
                     android:prompt="@string/select_prompt"
                     android:spinnerMode="dropdown"
                     android:layout_below="@+id/sping_give_petsize"

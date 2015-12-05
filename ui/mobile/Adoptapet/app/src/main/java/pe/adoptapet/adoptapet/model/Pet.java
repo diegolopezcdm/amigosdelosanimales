@@ -1,74 +1,33 @@
 package pe.adoptapet.adoptapet.model;
 
+import com.parse.ParseFile;
+
 import java.io.File;
 
 /**
  * Created by AndrewSteven on 30/11/2015.
  */
 public class Pet {
-
     private String objectId;
     private String petName;
-
     private String ownerName;
-
     private String petType;
-
     private String ownerId;
-
     private String petSize;
-
     private String petRace;
-
     private String petAge;
-
-    private File petPhoto;
-
+    private String petSex;
+    private ParseFile petPhoto;
     private int photoRes;
-
     private String petDescription;
-
-
 
     public Pet(){
 
-
-
-    }
-
-
-
-    public Pet(String objectId, String petName, String petType, String ownerName, String ownerId, String petSize, String petRace, String petAge, File petPhoto, int photoRes, String petDescription) {
-        this.objectId = objectId;
-
-        this.petName = petName;
-
-        this.petType = petType;
-
-        this.ownerName = ownerName;
-
-        this.ownerId = ownerId;
-
-        this.petSize = petSize;
-
-        this.petRace = petRace;
-
-        this.petAge = petAge;
-
-        this.petPhoto = petPhoto;
-
-        this.photoRes = photoRes;
-
-        this.petDescription = petDescription;
     }
 
     public String getObjectId() {
         return objectId;
     }
-
-
-
-
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
@@ -78,9 +37,6 @@ public class Pet {
         return petName;
     }
 
-
-
-    
     public void setPetName(String petName) {
         this.petName = petName;
     }
@@ -133,11 +89,11 @@ public class Pet {
         this.petAge = petAge;
     }
 
-    public File getPetPhoto() {
+    public ParseFile getPetPhoto() {
         return petPhoto;
     }
 
-    public void setPetPhoto(File petPhoto) {
+    public void setPetPhoto(ParseFile petPhoto) {
         this.petPhoto = petPhoto;
     }
 
@@ -155,5 +111,13 @@ public class Pet {
 
     public void setPetDescription(String petDescription) {
         this.petDescription = petDescription;
+    }
+
+    public String getPetSex() {
+        return petSex;
+    }
+
+    public void setPetSex(String petSex) {
+        this.petSex = petSex;
     }
 }

@@ -16,6 +16,10 @@ import android.provider.MediaStore;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.parse.ParseFile;
+
+import java.io.ByteArrayOutputStream;
+
 /**
  * Created by AndrewSteven on 01/12/2015.
  */
@@ -32,7 +36,6 @@ public class Constants {
         int cropW = (width - height) / 2;
         cropW = (cropW < 0)? 0: cropW;
         int cropH = (height - width) / 2;
-
         cropH = (cropH < 0)? 0: cropH;
         Bitmap cropImg = Bitmap.createBitmap(bitmap, cropW, cropH, newWidth, newHeight);
 
@@ -74,11 +77,9 @@ public class Constants {
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0);
         paint.setColor(color);
-
         // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
         canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
                 bitmap.getWidth() / 2, paint);
-
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
         //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
@@ -91,35 +92,37 @@ public class Constants {
 
 
             if (requestCode == Constants.RESULT_LOAD_IMAGE && resultCode == ctx.RESULT_OK && null != data) {
-
                 Uri selectedImage = data.getData();
-
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
                 Cursor cursor = ctx.getContentResolver().query(selectedImage,
                         filePathColumn, null, null, null);
-
                 cursor.moveToFirst();
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-
                 String picturePath = cursor.getString(columnIndex);
                 cursor.close();
-
                 //imgPickPhoto.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
                 Bitmap bm = BitmapFactory.decodeFile(picturePath);
-
                 Bitmap resized = Bitmap.createScaledBitmap(Constants.cropToSquare(bm), 500, 500, true);
                 //Bitmap conv_bm = getRoundedRectBitmap(resized, 200);
-
                 imgPickPhoto.setImageBitmap(Constants.getCroppedBitmap(resized));
             }
         }catch(Exception ex){
-
             Toast.makeText(ctx, "Photo can not be loaded", Toast.LENGTH_SHORT).show();
-
         }
     }
+
+    /*public static ParseFile uploadParseImage(String filename, Bitmap bitmap){
+        ParseFile file = null;
+        if(bitmap!=null){
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] bfile = stream.toByteArray();
+            file = new ParseFile(filename, bfile);
+            file.saveInBackground();
+        }
+        return file;
+    }*/
 
 }

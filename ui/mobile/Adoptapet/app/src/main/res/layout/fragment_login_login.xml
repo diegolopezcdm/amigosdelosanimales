@@ -53,8 +53,7 @@
             android:id="@+id/btnLoginLogin"
             android:layout_below="@+id/txtLoginPassword"
             android:layout_centerHorizontal="true"
-            style="@style/HomeButtonStyle"
-            android:onClick="goToMain"/>
+            style="@style/HomeButtonStyle"/>
 
 
     </RelativeLayout>

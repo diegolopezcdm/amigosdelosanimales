@@ -1,5 +1,9 @@
 package pe.adoptapet.adoptapet.model;
 
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+
 import java.io.File;
 
 /**
@@ -7,25 +11,23 @@ import java.io.File;
  */
 public class Campaign {
     private String objectId;
-
     private String campaignName;
-
     private String campaignShortDesc;
-
     private String campaignLink;
-
     private int campaignRes;
+    private ParseFile campaignPhoto;
+    private byte[] bytePhoto;
+    public Campaign(){
 
-    private File campaignPhoto;
+    }
 
-    public Campaign(String objectId, String campaignName, String campaignShortDesc, String campaignLink, int campaignRes, File campaignPhoto) {
+    public Campaign(String objectId, String campaignName, String campaignShortDesc, String campaignLink, int campaignRes, ParseFile campaignPhoto) {
         this.objectId = objectId;
-
         this.campaignName = campaignName;
         this.campaignShortDesc = campaignShortDesc;
         this.campaignLink = campaignLink;
         this.campaignRes = campaignRes;
-        this.campaignPhoto = campaignPhoto;
+        this.setCampaignPhoto(campaignPhoto);
     }
 
     public String getObjectId() {
@@ -68,11 +70,19 @@ public class Campaign {
         this.campaignRes = campaignRes;
     }
 
-    public File getCampaignPhoto() {
+    public ParseFile getCampaignPhoto() {
         return campaignPhoto;
     }
 
-    public void setCampaignPhoto(File campaignPhoto) {
+    public void setCampaignPhoto(ParseFile campaignPhoto) {
         this.campaignPhoto = campaignPhoto;
+    }
+
+    public byte[] getBytePhoto() {
+        return bytePhoto;
+    }
+
+    public void setBytePhoto(byte[] bytePhoto) {
+        this.bytePhoto = bytePhoto;
     }
 }

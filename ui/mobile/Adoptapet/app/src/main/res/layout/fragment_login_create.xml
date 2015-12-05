@@ -37,15 +37,59 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountEmail"
+                    android:layout_below="@+id/newaccount_img_pick"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:hint="E-mail"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Username"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/txtNewAccountUser"
+                    android:layout_below="@+id/txtNewAccountEmail"
+                    android:layout_alignLeft="@+id/txtNewAccountEmail"
+                    android:layout_alignStart="@+id/txtNewAccountEmail"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountPassword"
+                    android:layout_below="@+id/txtNewAccountUser"
+                    android:layout_alignLeft="@+id/txtNewAccountUser"
+                    android:layout_alignStart="@+id/txtNewAccountUser"
+                    android:hint="Password"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text=""/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:hint="Firstname"
                     android:ems="10"
                     android:textSize="16sp"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/txtNewAccountPetName"
-                    android:layout_below="@+id/newaccount_img_pick"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
+                    android:id="@+id/txtNewAccountFirstName"
+                    android:layout_below="@+id/txtNewAccountPassword"
+                    android:layout_alignLeft="@+id/txtNewAccountPassword"
+                    android:layout_alignStart="@+id/txtNewAccountPassword"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
@@ -55,11 +99,25 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:textSize="16sp"
-                    android:id="@+id/txtNewAccountPetDescription"
-                    android:layout_below="@+id/txtNewAccountPetName"
-                    android:layout_alignLeft="@+id/txtNewAccountPetName"
-                    android:layout_alignStart="@+id/txtNewAccountPetName"
+                    android:id="@+id/txtNewAccountLastName"
+                    android:layout_below="@+id/txtNewAccountFirstName"
+                    android:layout_alignLeft="@+id/txtNewAccountFirstName"
+                    android:layout_alignStart="@+id/txtNewAccountFirstName"
                     android:hint="Lastname"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:id="@+id/txtNewAccountDNI"
+                    android:layout_below="@+id/txtNewAccountLastName"
+                    android:layout_alignLeft="@+id/txtNewAccountLastName"
+                    android:layout_alignStart="@+id/txtNewAccountLastName"
+                    android:hint="DNI"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
@@ -70,24 +128,10 @@
                     android:ems="10"
                     android:textSize="16sp"
                     android:id="@+id/txtNewAccountAddress"
-                    android:layout_below="@+id/txtNewAccountPetDescription"
-                    android:layout_alignLeft="@+id/txtNewAccountPetDescription"
-                    android:layout_alignStart="@+id/txtNewAccountPetDescription"
+                    android:layout_below="@+id/txtNewAccountDNI"
+                    android:layout_alignLeft="@+id/txtNewAccountDNI"
+                    android:layout_alignStart="@+id/txtNewAccountDNI"
                     android:hint="Address"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:ems="10"
-                    android:textSize="16sp"
-                    android:id="@+id/txtNewAccountEmail"
-                    android:layout_below="@+id/txtNewAccountAddress"
-                    android:layout_alignLeft="@+id/txtNewAccountAddress"
-                    android:layout_alignStart="@+id/txtNewAccountAddress"
-                    android:hint="E-mail"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
@@ -98,9 +142,9 @@
                     android:ems="10"
                     android:textSize="16sp"
                     android:id="@+id/txtNewAccountPhone"
-                    android:layout_below="@+id/txtNewAccountEmail"
-                    android:layout_alignLeft="@+id/txtNewAccountEmail"
-                    android:layout_alignStart="@+id/txtNewAccountEmail"
+                    android:layout_below="@+id/txtNewAccountAddress"
+                    android:layout_alignLeft="@+id/txtNewAccountAddress"
+                    android:layout_alignStart="@+id/txtNewAccountAddress"
                     android:hint="Phone number"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
@@ -117,23 +161,8 @@
                     android:layout_alignStart="@+id/txtNewAccountPhone"
                     android:hint="Birthday"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:text=""/>
+                    android:layout_alignParentEnd="true" />
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:ems="10"
-                    android:textSize="16sp"
-                    android:id="@+id/txtNewAccountPassword"
-                    android:layout_below="@+id/txtNewAccountBirthday"
-                    android:layout_alignLeft="@+id/txtNewAccountBirthday"
-                    android:layout_alignStart="@+id/txtNewAccountBirthday"
-                    android:hint="Password"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:text=""/>
 
 
             </RelativeLayout>
