@@ -37,7 +37,7 @@ public class Constants {
         int cropW = (width - height) / 2;
         cropW = (cropW < 0)? 0: cropW;
         int cropH = (height - width) / 2;
-        
+
         cropH = (cropH < 0)? 0: cropH;
         Bitmap cropImg = Bitmap.createBitmap(bitmap, cropW, cropH, newWidth, newHeight);
 
