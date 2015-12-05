@@ -40,7 +40,7 @@ public class AdoptResultAdapter extends ArrayAdapter<String> {
         }else{
 
             rowView.setBackgroundResource(R.drawable.bg_trans_yellow);
-            
+
         }
 
         TextView txtTitle = (TextView) rowView.findViewById(R.id.adopt_result_item_text);

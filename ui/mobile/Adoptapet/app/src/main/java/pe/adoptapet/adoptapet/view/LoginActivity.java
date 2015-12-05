@@ -59,34 +59,48 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void goToHomeLogin() {
-        // update the main content by replacing fragments
+
+        // update the main content by replacing fr
+        // agments
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
+
                 .replace(R.id.fgLoginContainer, new HomeFragment())
+
                 .commit();
     }
 
     public void goToLoginFragment(View v){
+
         FragmentManager fragmentManager = getSupportFragmentManager();
+
         fragmentManager.beginTransaction()
                 .replace(R.id.fgLoginContainer, new LoginFragment())
                 .setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("loginFrag")
                 .commit();
+
     }
 
     public void goToCreateFragment(View v){
+
         FragmentManager fragmentManager = getSupportFragmentManager();
+
         fragmentManager.beginTransaction()
                 .replace(R.id.fgLoginContainer, new CreateFragment())
                 .setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("createFrag")
                 .commit();
+
     }
 
     public void goToMain(View v){
+
         Intent i = new Intent(this, MainActivity.class);
+
         startActivity(i);
+
     }
 
     public void goToSigInFragment(View v){
@@ -95,25 +109,34 @@ public class LoginActivity extends ActionBarActivity {
 
 
     public static class HomeFragment extends Fragment {
+
         public HomeFragment() {
+
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_login_home, container, false);
+
             return rootView;
+
         }
     }
 
     public static class LoginFragment extends Fragment {
+
         public LoginFragment() {
+
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_login_login, container, false);
+
             return rootView;
         }
     }
@@ -125,7 +148,9 @@ public class LoginActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_login_create, container, false);
+
             return rootView;
         }
     }
@@ -135,8 +160,10 @@ public class LoginActivity extends ActionBarActivity {
         imgPickPhoto = (ImageView)v;
         Intent i = new Intent(
                 Intent.ACTION_PICK,
+
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, Constants.RESULT_LOAD_IMAGE);
+        
     }
 
     @Override

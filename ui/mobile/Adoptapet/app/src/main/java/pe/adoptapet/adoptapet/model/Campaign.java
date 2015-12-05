@@ -22,13 +22,9 @@ public class Campaign {
         this.objectId = objectId;
 
         this.campaignName = campaignName;
-
         this.campaignShortDesc = campaignShortDesc;
-
         this.campaignLink = campaignLink;
-
         this.campaignRes = campaignRes;
-
         this.campaignPhoto = campaignPhoto;
     }
 
