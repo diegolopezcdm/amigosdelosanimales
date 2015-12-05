@@ -1,0 +1,11 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/spiner_parse_item_text"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/item_drawer_icon"
+        android:text="Parse Text"
+        android:textSize="16sp"
+        android:background="@drawable/transparent"
+        android:padding ="10dp"/>
