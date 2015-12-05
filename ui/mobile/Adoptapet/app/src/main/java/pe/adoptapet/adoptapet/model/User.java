@@ -7,13 +7,20 @@ import java.io.File;
  */
 public class User {
     private String objectId;
+
     private String username;
+
     private String password;
+
     private String name;
     private String lastname;
+
     private String dni;
+
     private String phono;
+
     private String email;
+
     private File photo;
 
     public String getObjectId() {
