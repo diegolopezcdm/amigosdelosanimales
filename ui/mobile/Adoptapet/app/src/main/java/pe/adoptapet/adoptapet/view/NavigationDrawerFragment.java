@@ -118,15 +118,10 @@ public class NavigationDrawerFragment extends Fragment {
                 }));*/
 
         NavDrawerItem []drawer_items = new NavDrawerItem[5];
-
         drawer_items[0] = new NavDrawerItem(R.drawable.home_logo, getString(R.string.title_home));
-
         drawer_items[1] = new NavDrawerItem(R.drawable.adopt_icon, getString(R.string.title_adopt));
-
         drawer_items[2] = new NavDrawerItem(R.drawable.give_icon, getString(R.string.title_give));
-
         drawer_items[3] = new NavDrawerItem(R.drawable.camp_icon, getString(R.string.title_campaign));
-        
         drawer_items[4] = new NavDrawerItem(R.drawable.account_icon, getString(R.string.title_account));
 
 
