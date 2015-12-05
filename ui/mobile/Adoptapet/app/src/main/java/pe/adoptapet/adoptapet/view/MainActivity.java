@@ -69,9 +69,12 @@ public class MainActivity extends ActionBarActivity
         lstPet = new Pet[10];
         lstPet[0] = new Pet("1", "Antón", "Cat", "Luis Valencia", "1", "Medium", "Siamese", "0 - 1 year", null, R.drawable.cat_profile, "Sample of description");
         lstPet[1] = new Pet("2", "Eby", "Dog", "Tomás Aquino", "1", "Small", "Retriever", "0 - 1 year", null, R.drawable.dog_profile, "Sample of description");
+
         lstPet[2] = new Pet("3", "Dexter", "Cat", "Rodrigo Monsup", "1", "Big", "Coon", "2 - 3 years", null, R.drawable.cat2_profile, "Sample of description");
         lstPet[3] = new Pet("4", "Eko", "Dog", "Flor Gutierrezz", "1", "Small", "Caniche", "2 - 3 years", null, R.drawable.dog2_profile, "Sample of description");
+
         lstPet[4] = new Pet("5", "Fumet", "Cat", "Estela Butters", "1", "Medium", "Exotic", "0 - 1 year", null, R.drawable.cat3_profile, "Sample of description");
+
         lstPet[5] = new Pet("6", "Goldo", "Dog", "Woolder Apologeo", "1", "Big", "Tizu", "0 - 1 year", null, R.drawable.dog3_profile, "Sample of description");
         lstPet[6] = new Pet("7", "Halley", "Cat", "Roberto Ginoccio", "1", "Medium", "Russian", "4 - more", null, R.drawable.cat4_profile, "Sample of description");
         lstPet[7] = new Pet("8", "Jara", "Dog", "Miriam Palacios", "1", "big", "embroke", "0 - 1 year", null, R.drawable.dog4_profile, "Sample of description");
@@ -88,7 +91,9 @@ public class MainActivity extends ActionBarActivity
         Fragment fg = fragmentAttached(position+1, obj);
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
+
         if(position < 5){
+
             fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             fragmentManager.beginTransaction()
                     .replace(R.id.container, fg)
@@ -110,6 +115,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     public Fragment fragmentAttached(int number, Object obj) {
+
         Fragment fg = null;
         switch (number) {
             case 1:
