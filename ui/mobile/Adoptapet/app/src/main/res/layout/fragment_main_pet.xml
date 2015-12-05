@@ -98,7 +98,6 @@
             android:layout_below="@+id/pet_petage"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            style="@style/HomeButtonStyle"
-            android:onClick="adoptPet"/>
+            style="@style/HomeButtonStyle"/>
     </RelativeLayout>
 </RelativeLayout>

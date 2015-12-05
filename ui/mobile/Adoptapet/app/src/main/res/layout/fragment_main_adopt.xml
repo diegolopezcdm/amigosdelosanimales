@@ -29,18 +29,20 @@
             android:shadowColor="@android:color/black"
             android:shadowDx="1"
             android:shadowDy="1"
-            android:shadowRadius="2" />
+            android:textSize="16sp"
+            android:shadowRadius="2"
+            android:layout_alignBottom="@+id/spinSearchPetType" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinPet"
+            android:id="@+id/spinSearchPetType"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/lblSelectPet"
-            android:layout_toEndOf="@+id/lblSelectPet"
-            android:entries="@array/pet_arrays"
             android:prompt="@string/select_prompt"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,20 +53,23 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:layout_below="@+id/spinPet"
+            android:layout_below="@+id/spinSearchPetType"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textSize="16sp"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/lblSizePet" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinAgePet"
-            android:entries="@array/age_arrays"
+            android:id="@+id/spinSearchPetAge"
             android:prompt="@string/select_prompt"
-            android:layout_below="@+id/spinPet"
-            android:layout_alignLeft="@+id/spinPet"
-            android:layout_alignStart="@+id/spinPet"
-            android:spinnerMode="dropdown" />
+            android:layout_below="@+id/spinSearchPetType"
+            android:layout_alignLeft="@+id/spinSearchPetType"
+            android:layout_alignStart="@+id/spinSearchPetType"
+            android:spinnerMode="dropdown"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,20 +80,22 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:layout_below="@+id/spinAgePet"
+            android:textSize="16sp"
+            android:layout_below="@+id/spinSearchPetAge"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinSizePet"
-            android:entries="@array/size_arrays"
+            android:id="@+id/spinSearchPetSize"
             android:prompt="@string/select_prompt"
             android:spinnerMode="dropdown"
             android:layout_alignTop="@+id/lblSizePet"
-            android:layout_alignLeft="@+id/spinAgePet"
-            android:layout_alignStart="@+id/spinAgePet" />
+            android:layout_alignLeft="@+id/spinSearchPetAge"
+            android:layout_alignStart="@+id/spinSearchPetAge"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -99,31 +106,23 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:layout_below="@+id/spinSizePet"
+            android:textSize="16sp"
+            android:layout_below="@+id/spinSearchPetSize"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/spinSearchPetSex" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinSexPet"
-            android:entries="@array/sex_arrays"
+            android:id="@+id/spinSearchPetSex"
             android:prompt="@string/select_prompt"
             android:spinnerMode="dropdown"
-            android:layout_below="@+id/spinSizePet"
-            android:layout_alignLeft="@+id/spinSizePet"
-            android:layout_alignStart="@+id/spinSizePet" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:id="@+id/btnSearchPet"
-            android:layout_below="@+id/spinSexPet"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="29dp"
-            style="@style/HomeButtonStyle"
-            android:onClick="goToAdoptResult"/>
+            android:layout_below="@+id/spinSearchPetSize"
+            android:layout_alignLeft="@+id/spinSearchPetSize"
+            android:layout_alignStart="@+id/spinSearchPetSize"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
@@ -135,4 +134,22 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/home_logo"
         android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/btnSearchPet"
+        style="@style/HomeButtonStyle"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/btnListAdoptPet"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/petlist_icon" />
 </RelativeLayout>

@@ -2,17 +2,11 @@ package pe.adoptapet.adoptapet.view;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -32,20 +26,17 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
-import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.parse.SignUpCallback;
 
 import java.io.ByteArrayOutputStream;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +46,7 @@ import pe.adoptapet.adoptapet.model.Campaign;
 import pe.adoptapet.adoptapet.model.CampaignAdapter;
 import pe.adoptapet.adoptapet.model.Constants;
 import pe.adoptapet.adoptapet.model.ParseArrayAdapter;
-import pe.adoptapet.adoptapet.model.Pet;
+import pe.adoptapet.adoptapet.model.RequestAdapter;
 
 
 public class MainActivity extends ActionBarActivity
@@ -66,7 +57,7 @@ public class MainActivity extends ActionBarActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    public Pet []lstPet;
+
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
@@ -90,17 +81,7 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        lstPet = new Pet[10];
-        /*lstPet[0] = new Pet("1", "Antón", "Cat", "Luis Valencia", "1", "Medium", "Siamese", "0 - 1 year", null, R.drawable.cat_profile, "Sample of description");
-        lstPet[1] = new Pet("2", "Eby", "Dog", "Tomás Aquino", "1", "Small", "Retriever", "0 - 1 year", null, R.drawable.dog_profile, "Sample of description");
-        lstPet[2] = new Pet("3", "Dexter", "Cat", "Rodrigo Monsup", "1", "Big", "Coon", "2 - 3 years", null, R.drawable.cat2_profile, "Sample of description");
-        lstPet[3] = new Pet("4", "Eko", "Dog", "Flor Gutierrezz", "1", "Small", "Caniche", "2 - 3 years", null, R.drawable.dog2_profile, "Sample of description");
-        lstPet[4] = new Pet("5", "Fumet", "Cat", "Estela Butters", "1", "Medium", "Exotic", "0 - 1 year", null, R.drawable.cat3_profile, "Sample of description");
-        lstPet[5] = new Pet("6", "Goldo", "Dog", "Woolder Apologeo", "1", "Big", "Tizu", "0 - 1 year", null, R.drawable.dog3_profile, "Sample of description");
-        lstPet[6] = new Pet("7", "Halley", "Cat", "Roberto Ginoccio", "1", "Medium", "Russian", "4 - more", null, R.drawable.cat4_profile, "Sample of description");
-        lstPet[7] = new Pet("8", "Jara", "Dog", "Miriam Palacios", "1", "big", "embroke", "0 - 1 year", null, R.drawable.dog4_profile, "Sample of description");
-        lstPet[8] = new Pet("9", "Laceyr", "Cat", "Esmeralda Saenz", "1", "Medium", "syberian", "0 - 1 year", null, R.drawable.cat5_profile, "Sample of description");
-        lstPet[9] = new Pet("10", "Maki", "Dog", "Carlos Artillera", "1", "Small", "Terrier", "0 - 1 year", null, R.drawable.dog5_profile, "Sample of description");*/
+
 
     }
 
@@ -108,19 +89,23 @@ public class MainActivity extends ActionBarActivity
         lstOpt.clear();
         spin.setAdapter(new ParseArrayAdapter(this,lstOpt,column));
         ParseQuery<ParseObject> query = ParseQuery.getQuery(parseClass);
-
+        lstOpt.clear();
+        ParseObject temp = new ParseObject(parseClass);
+        temp.put(column, "-- select --");
+        lstOpt.add(temp);
+        ((ParseArrayAdapter) spin.getAdapter()).notifyDataSetChanged();
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, com.parse.ParseException e) {
                 if (e == null) {
                     lstOpt.clear();
                     ParseObject temp = new ParseObject(parseClass);
-                    temp.put(column,"-- select --");
+                    temp.put(column, "-- select --");
                     lstOpt.add(temp);
                     for (ParseObject obj : objects) {
                         lstOpt.add(obj);
                     }
-                    ((ParseArrayAdapter)spin.getAdapter()).notifyDataSetChanged();
+                    ((ParseArrayAdapter) spin.getAdapter()).notifyDataSetChanged();
                 } else {
                     Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
                 }
@@ -273,12 +258,26 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 6:
                 fg = new AdoptResultFragment();
-                mTitle = getString(R.string.title_adopt_results);
+                ((AdoptResultFragment)fg).setLista((ArrayList<ParseObject>)obj);
+                mTitle = getString(R.string.title_adopt);
                 break;
             case 7:
                 fg = new PetFragment();
-                ((PetFragment)fg).setPet((Pet)obj);
+                ((PetFragment)fg).setPet((ParseObject) obj);
                 mTitle = getString(R.string.title_pet_detail);
+                break;
+            case 8:
+                fg = new GiveListFragment();
+                mTitle = getString(R.string.title_give);
+                break;
+            case 9:
+                fg = new MyRequestFragment();
+                mTitle = getString(R.string.title_adopt);
+                break;
+            case 10:
+                fg = new PetRequestFragment();
+                ((PetRequestFragment)fg).setPet((ParseObject)obj);
+                mTitle = getString(R.string.title_adopt);
                 break;
         }
 
@@ -328,15 +327,9 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void goToAdoptResult(View v){
-        onNavigationDrawerItemSelected(5);
-        restoreActionBar();
-    }
 
-    public void adoptPet(View v){
-        Pet pet = PetFragment.pet;
-        Toast.makeText(getApplicationContext(),"Your request has been sent!", Toast.LENGTH_LONG).show();
-    }
+
+
 
     private  static ImageView imgPickPhoto;
     public void pickPhotoGallery(View v){
@@ -351,10 +344,15 @@ public class MainActivity extends ActionBarActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Constants.imageGallerySelected(this,requestCode,resultCode,data,imgPickPhoto);
+        Constants.imageGallerySelected(this, requestCode, resultCode, data, imgPickPhoto);
 
 
     }
+
+    public void goToGiveList(View v){
+        selectFragment(7, null);
+    }
+
 
 
 
@@ -549,6 +547,16 @@ public class MainActivity extends ActionBarActivity
         }
     }
     public static class AdoptFragment extends Fragment {
+
+        private ArrayList<ParseObject> lstPetAge;
+        private ArrayList<ParseObject> lstPetSex;
+        private ArrayList<ParseObject> lstPetSize;
+        private ArrayList<ParseObject> lstPetType;
+        private Spinner spinPetType, spinPetAge, spinPetSize, spinPetSex;
+        private Button btnSearch;
+        private ImageView btnAdoptList;
+        ProgressDialog barProgressDialog;
+
         public AdoptFragment() {
         }
 
@@ -556,7 +564,99 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main_adopt, container, false);
+
+            spinPetType = (Spinner)rootView.findViewById(R.id.spinSearchPetType);
+            spinPetAge = (Spinner)rootView.findViewById(R.id.spinSearchPetAge);
+            spinPetSize = (Spinner)rootView.findViewById(R.id.spinSearchPetSize);
+            spinPetSex = (Spinner)rootView.findViewById(R.id.spinSearchPetSex);
+            btnAdoptList = (ImageView)rootView.findViewById(R.id.btnListAdoptPet);
+
+            btnAdoptList.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity)getActivity()).selectFragment(8,null);
+                }
+            });
+
+            btnSearch = (Button)rootView.findViewById(R.id.btnSearchPet);
+            btnSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showProgressBar(true);
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Pet");
+                    query.include("giveUser");
+                    query.include("newOwner");
+
+                    ParseObject selectedPetAge = (ParseObject)spinPetAge.getSelectedItem();
+                    ParseObject selectedPetSex = (ParseObject)spinPetSex.getSelectedItem();
+                    ParseObject selectedPetSize = (ParseObject)spinPetSize.getSelectedItem();
+                    ParseObject selectedPetType = (ParseObject)spinPetType.getSelectedItem();
+
+                    if(selectedPetAge!=null && selectedPetAge.getObjectId()!=null){
+                        query.whereEqualTo("petAge", selectedPetAge);
+                    }
+
+                    if(selectedPetSex!=null && selectedPetSex.getObjectId()!=null){
+                        query.whereEqualTo("petSex", selectedPetSex);
+                    }
+
+                    if(selectedPetSize!=null && selectedPetSize.getObjectId()!=null){
+                        query.whereEqualTo("petSize", selectedPetSize);
+                    }
+
+                    if(selectedPetType!=null && selectedPetType.getObjectId()!=null){
+                        query.whereEqualTo("petType", selectedPetType);
+                    }
+
+
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> objects, com.parse.ParseException e) {
+                            showProgressBar(false);
+                            if (e == null) {
+                                if(objects!=null && objects.size()>0){
+                                    ((MainActivity)getActivity()).selectFragment(5, objects);
+                                    ((MainActivity)getActivity()).restoreActionBar();
+                                }else{
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setMessage("No results")
+                                            .setTitle("Message")
+                                            .setPositiveButton(android.R.string.ok, null);
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                            } else {
+                                Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
+                            }
+                        }
+                    });
+                }
+            });
+
+            MainActivity act = ((MainActivity)getActivity());
+            lstPetAge = new ArrayList<ParseObject>();
+            lstPetSex = new ArrayList<ParseObject>();
+            lstPetSize = new ArrayList<ParseObject>();
+            lstPetType = new ArrayList<ParseObject>();
+
+            act.loadPetOptionList(spinPetAge, lstPetAge, "petAge", "petAgeDescription");
+            act.loadPetOptionList(spinPetSex, lstPetSex, "petSex", "petSexDescription");
+            act.loadPetOptionList(spinPetSize, lstPetSize, "petSize", "petSizeDescription");
+            act.loadPetOptionList(spinPetType, lstPetType, "PetType", "petTypeName");
+
             return rootView;
+        }
+
+        public void showProgressBar(boolean state){
+            if(state){
+                barProgressDialog = ProgressDialog.show(getActivity(), "Please wait ...",	"Searching ...", true);
+                barProgressDialog.setCancelable(false);
+            }else{
+                if(barProgressDialog!=null){
+                    barProgressDialog.dismiss();
+                    barProgressDialog=null;
+                }
+            }
         }
     }
     public static class GiveFragment extends Fragment {
@@ -566,10 +666,14 @@ public class MainActivity extends ActionBarActivity
         private Spinner spinPetType, spinPetAge, spinPetSize, spinPetSex;
         private String petID;
 
+        private Button btnGive;
+
         private ArrayList<ParseObject> lstPetAge;
         private ArrayList<ParseObject> lstPetSex;
         private ArrayList<ParseObject> lstPetSize;
         private ArrayList<ParseObject> lstPetType;
+
+        ProgressDialog barProgressDialog;
 
         public GiveFragment() {
         }
@@ -588,6 +692,92 @@ public class MainActivity extends ActionBarActivity
             spinPetSize = (Spinner)rootView.findViewById(R.id.sping_give_petsize);
             spinPetSex = (Spinner)rootView.findViewById(R.id.spin_give_petsex);
 
+            btnGive = (Button)rootView.findViewById(R.id.btnSaveGivePet);
+
+            btnGive.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String petName = txtPetName.getText().toString().trim();
+                    String petStory = txtPetStory.getText().toString().trim();
+                    String petRace = txtPetRace.getText().toString().trim();
+
+                    ParseObject parseAge = (ParseObject)spinPetAge.getSelectedItem();
+                    ParseObject parseSex = (ParseObject)spinPetSex.getSelectedItem();
+                    ParseObject parseSize = (ParseObject)spinPetSize.getSelectedItem();
+                    ParseObject parseType = (ParseObject)spinPetType.getSelectedItem();
+
+                    if(petName.isEmpty() || petStory.isEmpty() || petRace.isEmpty()  || parseAge.getObjectId()==null || parseSex.getObjectId()==null || parseSize.getObjectId()==null || parseType.getObjectId()==null){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage("All field are required!")
+                                .setTitle("Give adoption")
+                                .setPositiveButton(android.R.string.ok, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }else{
+                        showProgressBar(true);
+
+                        final ParseObject newPet = new ParseObject("Pet");
+                        newPet.put("petName", petName);
+                        newPet.put("petStory", petStory);
+                        newPet.put("petRace", petRace);
+                        newPet.put("petAge", parseAge);
+                        newPet.put("petSex", parseSex);
+                        newPet.put("petSize", parseSize);
+                        newPet.put("petType", parseType);
+                        newPet.put("giveUser", ParseUser.getCurrentUser());
+                        newPet.put("petStatus", "0");
+
+                        imgPickPetPhoto.buildDrawingCache();
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        Bitmap bm = imgPickPetPhoto.getDrawingCache();
+                        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] bfile = stream.toByteArray();
+                        final ParseFile file = new ParseFile(((int)(Math.random()*100000)) + ".png", bfile);
+                        file.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(com.parse.ParseException e2) {
+                                if(e2 == null){
+                                    newPet.put("petPhoto", file);
+
+                                    newPet.saveInBackground(new SaveCallback() {
+                                        @Override
+                                        public void done(com.parse.ParseException e) {
+                                            showProgressBar(false);
+
+                                            if (e == null) {
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                                builder.setMessage("Pet saved!")
+                                                        .setTitle("Publish")
+                                                        .setPositiveButton(android.R.string.ok, null);
+                                                AlertDialog dialog = builder.create();
+                                                dialog.show();
+                                                ((MainActivity) getActivity()).goToGiveList(null);
+                                            } else {
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                                builder.setMessage(e.getMessage())
+                                                        .setTitle("Publish")
+                                                        .setPositiveButton(android.R.string.ok, null);
+                                                AlertDialog dialog = builder.create();
+                                                dialog.show();
+                                            }
+                                        }
+                                    });
+                                }else{
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setMessage(e2.getMessage())
+                                            .setTitle("Publish Error")
+                                            .setPositiveButton(android.R.string.ok, null);
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                            }
+                        });
+
+                    }
+
+                }
+            });
+
             if(petID!=null) loadPetData();
 
             MainActivity act = ((MainActivity)getActivity());
@@ -604,6 +794,18 @@ public class MainActivity extends ActionBarActivity
 
 
             return rootView;
+        }
+
+        public void showProgressBar(boolean state){
+            if(state){
+                barProgressDialog = ProgressDialog.show(getActivity(), "Please wait ...",	"Publishing pet ...", true);
+                barProgressDialog.setCancelable(false);
+            }else{
+                if(barProgressDialog!=null){
+                    barProgressDialog.dismiss();
+                    barProgressDialog=null;
+                }
+            }
         }
 
         public void loadPetData(){
@@ -676,8 +878,12 @@ public class MainActivity extends ActionBarActivity
     public static class AdoptResultFragment extends Fragment {
 
         public static ListView lvAdoptResult;
-        public ArrayList<Pet> lstPet;
+        public ArrayList<ParseObject> lstPet;
         public AdoptResultFragment() {
+        }
+
+        public void setLista(ArrayList<ParseObject> lst){
+            lstPet = lst;
         }
 
         @Override
@@ -687,16 +893,227 @@ public class MainActivity extends ActionBarActivity
             lvAdoptResult = (ListView)rootView.findViewById(R.id.lvAdoptResult);
 
 
-            lstPet = new ArrayList<Pet>();
+            if(lstPet!=null && lstPet.size()>0){
+                lvAdoptResult.setAdapter(new AdoptResultAdapter(getActivity(),lstPet));
+                lvAdoptResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        ((MainActivity) getActivity()).selectFragment(6, (ParseObject)lstPet.get(position));
+                    }
+                });
+            }
 
-            lvAdoptResult.setAdapter(new AdoptResultAdapter(getActivity(),lstPet));
-            lvAdoptResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+
+
+            return rootView;
+        }
+    }
+
+
+    public static class MyRequestFragment extends Fragment {
+
+        public static ListView lvAdoptList;
+        public ArrayList<ParseObject> lstRequest, lstPet;
+        public MyRequestFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main_adopt_myrequest, container, false);
+            lvAdoptList = (ListView)rootView.findViewById(R.id.lvAdoptList);
+            lstPet = new ArrayList<ParseObject>();
+            lstRequest = new ArrayList<ParseObject>();
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("AdoptRequest");
+            query.include("reqPet");
+            query.include("reqPet.giveUser");
+            query.include("reqUser");
+            query.whereEqualTo("reqUser", ParseUser.getCurrentUser());
+            query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view,
-                                        int position, long id) {
-                    ((MainActivity)getActivity()).selectFragment(6, lstPet.get(position));
+                public void done(List<ParseObject> objects, com.parse.ParseException e) {
+
+                    if (e == null) {
+                        if(objects!=null && objects.size()>0){
+                            lstPet.clear();
+                            for(ParseObject obj : objects){
+                                ParseObject reqPet = obj.getParseObject("reqPet");
+                                lstPet.add(reqPet);
+                                lstRequest.add(obj);
+                            }
+                            ((AdoptResultAdapter)lvAdoptList.getAdapter()).notifyDataSetChanged();
+                        }
+                    } else {
+                        Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
+                    }
                 }
             });
+
+
+                lvAdoptList.setAdapter(new AdoptResultAdapter(getActivity(),lstPet));
+                lvAdoptList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            final int position, long id) {
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage("Are you sure to cancel your request?")
+                                .setTitle("Message")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        lstRequest.get(position).deleteInBackground();
+                                        lstPet.remove(position);
+                                        lstRequest.remove(position);
+                                        ((AdoptResultAdapter)lvAdoptList.getAdapter()).notifyDataSetChanged();
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+
+                    }
+                });
+
+
+
+
+
+            return rootView;
+        }
+    }
+
+    public static class PetRequestFragment extends Fragment {
+        private TextView txtPetName, txtPetOwner;
+        private ImageView imgPet;
+        public static ListView lvRequest;
+        public ArrayList<ParseObject> lstRequest;
+        ParseObject pet;
+        public PetRequestFragment() {
+        }
+
+        public void setPet(ParseObject pet){
+            this.pet = pet;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main_petrequest, container, false);
+            lvRequest = (ListView)rootView.findViewById(R.id.lvPetRequest);
+            txtPetName = (TextView)rootView.findViewById(R.id.txtGiveReqPetName);
+            txtPetOwner = (TextView)rootView.findViewById(R.id.txtGiveReqPetOwner);
+            imgPet = (ImageView)rootView.findViewById(R.id.imgPetRequest);
+
+            ParseFile fimg = pet.getParseFile("petPhoto");
+            if(fimg!=null){
+                fimg.getDataInBackground(new GetDataCallback() {
+                    @Override
+                    public void done(byte[] data, ParseException e) {
+                        if (e != null) {
+                            e.printStackTrace();
+                        } else {
+                            try {
+                                Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                imgPet.setImageBitmap(bm);
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+
+            txtPetName.setText((String) pet.get("petName"));
+            ParseObject giveUser = pet.getParseObject("giveUser");
+            ParseObject newOwner = pet.getParseObject("newOwner");
+            if(newOwner!=null){
+                String ownerName = "";
+                for (String key : newOwner.keySet()) {
+                    if(key.equals("name")){
+                        ownerName+=newOwner.get(key);
+                    }else if(key.equals("lastname")){
+                        ownerName+=" "+newOwner.get(key);
+                    }
+                    //System.out.println("Key-> "+key + ":" + giveUser.get(key));
+                }
+                txtPetOwner.setText("Adopted by "+ownerName);
+            }else if(giveUser!=null){
+                String ownerName = "";
+                for (String key : giveUser.keySet()) {
+                    if(key.equals("name")){
+                        ownerName+=giveUser.get(key);
+                    }else if(key.equals("lastname")){
+                        ownerName+=" "+giveUser.get(key);
+                    }
+                    //System.out.println("Key-> "+key + ":" + giveUser.get(key));
+                }
+                txtPetOwner.setText(ownerName);
+            }
+
+            lstRequest = new ArrayList<ParseObject>();
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("AdoptRequest");
+            query.include("reqPet");
+            query.include("reqPet.giveUser");
+            query.include("reqUser");
+            query.whereEqualTo("reqPet", pet);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, com.parse.ParseException e) {
+
+                    if (e == null) {
+                        if (objects != null && objects.size() > 0) {
+                            lstRequest.clear();
+                            for (ParseObject obj : objects) {
+                                lstRequest.add(obj);
+                            }
+                            ((RequestAdapter) lvRequest.getAdapter()).notifyDataSetChanged();
+                        }
+                    } else {
+                        Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
+                    }
+                }
+            });
+
+
+            lvRequest.setAdapter(new RequestAdapter(getActivity(),lstRequest));
+            if(pet.getString("petStatus")!=null && pet.getString("petStatus").equals("0")){
+                lvRequest.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            final int position, long id) {
+
+                        final ParseObject newOwner = (ParseObject)lstRequest.get(position).get("reqUser");
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage("Are you sure to approve this request?")
+                                .setTitle("Message")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        pet.put("newOwner", newOwner);
+                                        pet.put("petStatus", "1");
+                                        pet.saveInBackground();
+                                        txtPetOwner.setText("Adopt by " + newOwner.get("name") + " " + newOwner.get("lastname"));
+                                        ((RequestAdapter)lvRequest.getAdapter()).notifyDataSetChanged();
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+
+                    }
+                });
+            }
+
+
 
 
 
@@ -707,11 +1124,13 @@ public class MainActivity extends ActionBarActivity
     public static class PetFragment extends Fragment {
         private TextView txtPetName, txtPetAge, txtPetRace, txtPetOwner, txtPetSize, txtPetDescription;
         private ImageView imgPhoto;
-        private static Pet pet;
+        private Button btnAdopt;
+        private static ParseObject pet;
+        ProgressDialog barProgressDialog;
         public PetFragment() {
         }
 
-        public void setPet(Pet pet){
+        public void setPet(ParseObject pet){
             this.pet = pet;
         }
 
@@ -727,21 +1146,222 @@ public class MainActivity extends ActionBarActivity
             txtPetDescription = (TextView)rootView.findViewById(R.id.pet_petdescription);
             imgPhoto = (ImageView)rootView.findViewById(R.id.img_pet_petphoto);
 
-            if(pet!=null){
-                if(pet.getPetName()!=null)txtPetName.setText(pet.getPetName());
-                if(pet.getPetAge()!=null)txtPetAge.setText("Age: "+pet.getPetAge());
-                if(pet.getPetRace()!=null)txtPetRace.setText("Race: "+pet.getPetRace());
-                if(pet.getOwnerName()!=null)txtPetOwner.setText("Owner: "+pet.getOwnerName());
-                if(pet.getPetSize()!=null)txtPetSize.setText("Size: "+pet.getPetSize());
-                if(pet.getPetDescription()!=null)txtPetDescription.setText(pet.getPetDescription());
+            btnAdopt = (Button)rootView.findViewById(R.id.btnAdoptPet);
 
-                if(pet.getPhotoRes()>0)imgPhoto.setImageResource(pet.getPhotoRes());
+            btnAdopt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showProgressBar(true);
+                    final ParseObject newReq = new ParseObject("AdoptRequest");
+                    newReq.put("reqPet", pet);
+                    newReq.put("reqUser", ParseUser.getCurrentUser());
+                    newReq.put("reqStatus", "0");
+                    newReq.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(com.parse.ParseException e) {
+                            showProgressBar(false);
+
+                            if (e == null) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setMessage("Request has been sent!")
+                                        .setTitle("Message")
+                                        .setPositiveButton(android.R.string.ok, null);
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                                btnAdopt.setEnabled(false);
+                                btnAdopt.setText("Sent!");
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setMessage(e.getMessage())
+                                        .setTitle("Request Error")
+                                        .setPositiveButton(android.R.string.ok, null);
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
+                        }
+                    });
+                }
+            });
+
+            btnAdopt.setVisibility(View.GONE);
+
+            if(pet!=null){
+
+                String petName = (String)pet.get("petName");
+                String petRace = (String)pet.get("petRace");
+                String petStory = (String)pet.get("petStory");
+                final String petStatus = (String)pet.get("petStatus");
+                ParseFile petPhoto = (ParseFile)pet.get("petPhoto");
+
+                ParseObject petAge = pet.getParseObject("petAge");
+                ParseObject petSex = pet.getParseObject("petSex");
+                ParseObject petSize = pet.getParseObject("petSize");
+                ParseObject petType = pet.getParseObject("petType");
+
+
+                ParseObject newOwner = pet.getParseObject("newOwner");
+                ParseObject giveUer = pet.getParseObject("giveUser");
+
+                if(petStatus!=null && petStatus.equals("0") && giveUer.getObjectId()!=ParseUser.getCurrentUser().getObjectId()){
+
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("AdoptRequest");
+                    query.include("reqPet");
+                    query.include("reqUser");
+                    query.whereEqualTo("reqStatus", "0");
+                    query.whereEqualTo("reqPet", pet);
+                    query.whereEqualTo("reqUser", ParseUser.getCurrentUser());
+
+
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> objects, com.parse.ParseException e) {
+
+                            if (e == null) {
+                                if(objects!=null && objects.size()>0){
+                                            btnAdopt.setVisibility(View.VISIBLE);
+                                            btnAdopt.setEnabled(false);
+                                            btnAdopt.setText("Sent!");
+                                    }else{
+                                        btnAdopt.setVisibility(View.VISIBLE);
+                                    }
+                            } else {
+                                Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
+                            }
+                        }
+                    });
+
+
+
+
+
+
+
+
+
+                }
+
+
+
+                if(petName!=null)txtPetName.setText(petName);
+                if(petAge!=null)txtPetAge.setText("Age: "+petAge.get("petAgeDescription"));
+                if(petRace!=null)txtPetRace.setText("Race: "+petRace);
+
+                if(newOwner!=null){
+                    String ownerName = "";
+                    for (String key : newOwner.keySet()) {
+                        if(key.equals("name")){
+                            ownerName+=newOwner.get(key);
+                        }else if(key.equals("lastname")){
+                            ownerName+=" "+newOwner.get(key);
+                        }
+                        //System.out.println("Key-> "+key + ":" + giveUser.get(key));
+                    }
+                    txtPetOwner.setText("Adopted by "+ownerName);
+                }else{
+                    String ownerName = "";
+                    for (String key : giveUer.keySet()) {
+                        if(key.equals("name")){
+                            ownerName+=giveUer.get(key);
+                        }else if(key.equals("lastname")){
+                            ownerName+=" "+giveUer.get(key);
+                        }
+                        //System.out.println("Key-> "+key + ":" + giveUser.get(key));
+                    }
+                    txtPetOwner.setText("Owner: "+ownerName);
+                }
+
+                if(petSize!=null)txtPetSize.setText("Size: "+petSize.get("petSizeDescription"));
+                if(petStory!=null)txtPetDescription.setText(petStory);
+
+                if(petPhoto!=null){
+                    petPhoto.getDataInBackground(new GetDataCallback() {
+                        @Override
+                        public void done(byte[] data, com.parse.ParseException e) {
+                            if (e != null) {
+                                e.printStackTrace();
+                            } else {
+                                try {
+                                    Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);
+                                    imgPhoto.setImageBitmap(bm);
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        }
+                    });
+                }
 
             }
+
+
+            return rootView;
+        }
+        public void showProgressBar(boolean state){
+            if(state){
+                barProgressDialog = ProgressDialog.show(getActivity(), "Please wait ...",	"Sending request ...", true);
+                barProgressDialog.setCancelable(false);
+            }else{
+                if(barProgressDialog!=null){
+                    barProgressDialog.dismiss();
+                    barProgressDialog=null;
+                }
+            }
+        }
+
+    }
+
+    public static class GiveListFragment extends Fragment {
+
+        public static ListView lvGiveList;
+        public ArrayList<ParseObject> lstGivePet;
+        public GiveListFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main_give_list, container, false);
+            lvGiveList = (ListView)rootView.findViewById(R.id.lvGiveList);
+
+
+            lstGivePet = new ArrayList<ParseObject>();
+            lvGiveList.setAdapter(new AdoptResultAdapter(getActivity(), lstGivePet));
+
+            lvGiveList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    ((MainActivity)getActivity()).selectFragment(9, lstGivePet.get(position));
+                }
+            });
+
+            getGiveLst();
+
             return rootView;
         }
 
+        public void getGiveLst(){
+            lstGivePet.clear();
 
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Pet");
+            query.include("giveUser");
+            query.include("newOwner");
+            query.whereEqualTo("giveUser", ParseUser.getCurrentUser());
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> objects, com.parse.ParseException e) {
+                    if (e == null) {
+                        lstGivePet.clear();
+                        for (ParseObject obj : objects) {
+                            lstGivePet.add(obj);
+                        }
+                        ((AdoptResultAdapter)lvGiveList.getAdapter()).notifyDataSetChanged();
+                    } else {
+                        Log.d(getClass().getSimpleName(), "Error: " + e.getMessage());
+                    }
+                }
+            });
+        }
     }
 
 }

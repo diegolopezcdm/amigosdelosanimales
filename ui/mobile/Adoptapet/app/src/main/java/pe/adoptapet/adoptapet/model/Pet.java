@@ -24,6 +24,20 @@ public class Pet {
     public Pet(){
 
     }
+    public Pet(String objectId, String petName, String petType, String ownerName, String ownerId, String petSize, String petRace, String petAge, ParseFile petPhoto, int photoRes, String petDescription) {
+        this.objectId = objectId;
+        this.petName = petName;
+        this.ownerName = ownerName;
+        this.petType = petType;
+        this.ownerId = ownerId;
+        this.petSize = petSize;
+        this.petRace = petRace;
+        this.petAge = petAge;
+        this.petSex = petSex;
+        this.petPhoto = petPhoto;
+        this.photoRes = photoRes;
+        this.petDescription = petDescription;
+    }
 
     public String getObjectId() {
         return objectId;

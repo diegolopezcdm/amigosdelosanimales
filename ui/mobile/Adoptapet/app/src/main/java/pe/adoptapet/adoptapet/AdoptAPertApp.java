@@ -18,7 +18,7 @@ public class AdoptAPertApp extends Application {
         super.onCreate();
         mContext = this;
         Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "vV1EElXhOIc1pOgCaRkfQD6FfRYVC7v38Ys8nOYh", "QisDlcaV1VhT4cnYblAGyoYTNu8GmhC2oFAZgSL3");
+        Parse.initialize(this, "5CtQfQhlBmSn76pqLq0JK24gvb9dvfGGeMGgd2qN", "yamLbFomjmy15ZkWMoum2zlHRvbiQs0KcpKR73qS");
 
         /*ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
